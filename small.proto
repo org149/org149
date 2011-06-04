@@ -1,0 +1,15 @@
+package small;
+message Data {
+optional string string_field0 = 1;
+optional string string_field1 = 2;
+optional string string_field2 = 3;
+optional string string_field3 = 4;
+optional string string_field4 = 5;
+
+optional int32 int_field0 = 6;
+optional int32 int_field1 = 7;
+optional int32 int_field2 = 8;
+optional int32 int_field3 = 9;
+optional int32 int_field4 = 10;
+
+}

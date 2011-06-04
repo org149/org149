@@ -1,0 +1,41 @@
+CALLS:
+
+RUBY WRITER, RUBY READER
+~small class, low L
+(ruby writer.rb L:20 small) | cpipe -vr -vw -vt | (ruby reader.rb small)
+~large class, low L
+(ruby writer.rb L:20 large) | cpipe -vr -vw -vt | (ruby reader.rb large)
+~small class, high L
+(ruby writer.rb L:2000 small) | cpipe -vr -vw -vt | (ruby reader.rb small)
+~large class, high L
+(ruby writer.rb L:2000 large) | cpipe -vr -vw -vt | (ruby reader.rb large)
+
+C++ WRITER, RUBY READER
+~small class, low L
+(LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ ./writer 20 small) | cpipe -vr -vw -vt | (ruby reader.rb small)
+~large class, low L
+(LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ ./writer 20 large) | cpipe -vr -vw -vt | (ruby reader.rb large)
+~small class, high L
+(LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ ./writer 2000 small) | cpipe -vr -vw -vt | (ruby reader.rb small)
+~large class, high L
+(LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ ./writer 2000 large) | cpipe -vr -vw -vt | (ruby reader.rb large)
+
+C++ WRITER, C++ READER
+~small class, low L
+(LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ ./writer 20 small) | cpipe -vr -vw -vt | (LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ ./reader small)
+~large class, low L
+(LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ ./writer 20 large) | cpipe -vr -vw -vt | (LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ ./reader large)
+~small class, high L
+(LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ ./writer 2000 small) | cpipe -vr -vw -vt | (LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ ./reader small)
+~large class, high L
+(LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ ./writer 2000 large) | cpipe -vr -vw -vt | (LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ ./reader large)
+
+RUBY WRITER, C++ READER
+~small class, low L
+(ruby writer.rb L:20 small) | cpipe -vr -vw -vt | (LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ ./reader small)
+~large class, low L
+(ruby writer.rb L:20 large) | cpipe -vr -vw -vt | (LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ ./reader large)
+~small class, high L
+(ruby writer.rb L:2000 small) | cpipe -vr -vw -vt | (LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ ./reader small)
+~large class, high L
+(ruby writer.rb L:2000 large) | cpipe -vr -vw -vt | (LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ ./reader large)
